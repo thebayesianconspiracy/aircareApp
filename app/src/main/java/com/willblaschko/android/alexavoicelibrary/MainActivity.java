@@ -517,6 +517,21 @@ public class MainActivity extends BaseActivity implements ActionsFragment.Action
                         {
                             payloadCard.setAlexaMessge("Authorize me");
                         }
+                        if (obj.get("intent").toString().equals("CheckBalanceIntent"))
+                        {
+                            JSONObject a = new JSONObject(obj.get("slots").toString());
+                            payloadCard.setAlexaMessge("What is my " + a.get("product_slot").toString() + " balance?");
+                        }
+                        if (obj.get("intent").toString().equals("ActiveVASIntent"))
+                        {
+                            JSONObject a = new JSONObject(obj.get("slots").toString());
+                            payloadCard.setAlexaMessge("List my active value added services for " + a.get("product_slot").toString());
+                        }
+                        if (obj.get("intent").toString().equals("VASActionIntent"))
+                        {
+                            JSONObject a = new JSONObject(obj.get("slots").toString());
+                            payloadCard.setAlexaMessge("Please " + a.get("vas_action_slot").toString() + " my " + a.get("vas_slot") + " service " + "for " + a.get("product_slot").toString());
+                        }
 
                         addAlexaCard(payloadCard);
 
